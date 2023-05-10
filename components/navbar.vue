@@ -9,7 +9,7 @@ const route = useRoute();
 <template>
     <div class="flex flex-row py-4 px-6 justify-between items-center">
         <div class="flex gap-20 items-center">
-            <NuxtLink to="/" class="text-xl font-mono"><i>Supademo</i></NuxtLink>
+            <NuxtLink to="/" class="text-xl font-mono"><i>Simple</i></NuxtLink>
         </div>
         <ClientOnly>
             <div
