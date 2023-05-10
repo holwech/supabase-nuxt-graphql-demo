@@ -1,6 +1,18 @@
+
 # supabase-nuxt-graphql-demo
 
-This is a simple implementation of a blogging tool using the following technologies:
+<img width="1470" alt="image" src="https://github.com/holwech/supabase-nuxt-graphql-demo/assets/7474295/ed8e7e61-59b4-4215-873a-e08b88fc9331">
+<hr />
+
+This is a simplified version of a blogging tool [I'm building](https://typzet.com). I might open-source the full project (if someone asks for it!).
+
+<br />
+
+Setting up the combination of Supabase, pg_graphql, Typescript and Nuxt 3 was such a pain, so I hope this can save you some time!
+
+<br />
+
+This project uses the following technologies:
 
 - Supabase
 - pg_graphql
@@ -9,6 +21,8 @@ This is a simple implementation of a blogging tool using the following technolog
 - Typescript
 - urql + graphql codegen
 - TipTap (text editing)
+
+<br />
 
 List of features:
 
@@ -90,7 +104,7 @@ SUPABASE_URL="YOUR_SUPABASE_URL"
 SUPABASE_KEY="YOUR_SUPABASE_ANON_KEY"
 ```
 
-In addition, you need to deploy to Supabase. This is fairly easy to do, and this [guide](https://supabase.com/docs/guides/getting-started/local-development#deploy-your-project) explains it fairly well. Basically, you need to run these two commands:
+In addition, you need to deploy to Supabase. This is easy to do, and this [guide](https://supabase.com/docs/guides/getting-started/local-development#deploy-your-project) explains it fairly well. Basically, you need to run these two commands:
 
 ```
 # You can get <project-id> from your project's dashboard URL: https://app.supabase.com/project/<project-id>
