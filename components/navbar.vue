@@ -9,10 +9,7 @@ const route = useRoute();
 <template>
     <div class="flex flex-row py-4 px-6 justify-between items-center">
         <div class="flex gap-20 items-center">
-            <NuxtLink to="/" class="text-xl font-mono"><i>typzet</i></NuxtLink>
-            <!-- <div>
-                <input placeholder="Search..." class="bg-gray-100 px-4 py-1 rounded-xl focus:outline-none" />
-            </div> -->
+            <NuxtLink to="/" class="text-xl font-mono"><i>Supademo</i></NuxtLink>
         </div>
         <ClientOnly>
             <div

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 useServerSeoMeta({
-    title: "typzet - simple blogging",
-    ogTitle: "typzet - simple blogging",
-    description: "Simple blogging and newsletter platform for everyone",
-    ogDescription: "Simple blogging and newsletter platform for everyone",
+    title: "simple blogging",
+    ogTitle: "simple blogging",
+    description: "Simple blogging for everyone",
+    ogDescription: "Simple blogging for everyone",
 });
 </script>
 
