@@ -1,0 +1,485 @@
+scalar BigInt
+
+"""
+Boolean expression comparing fields on type "BigInt"
+"""
+input BigIntFilter {
+  eq: BigInt
+  gt: BigInt
+  gte: BigInt
+  in: [BigInt!]
+  is: FilterIs
+  lt: BigInt
+  lte: BigInt
+  neq: BigInt
+}
+
+"""
+Boolean expression comparing fields on type "Boolean"
+"""
+input BooleanFilter {
+  eq: Boolean
+  gt: Boolean
+  gte: Boolean
+  in: [Boolean!]
+  is: FilterIs
+  lt: Boolean
+  lte: Boolean
+  neq: Boolean
+}
+
+scalar Cursor
+
+scalar Date
+
+"""
+Boolean expression comparing fields on type "Date"
+"""
+input DateFilter {
+  eq: Date
+  gt: Date
+  gte: Date
+  in: [Date!]
+  is: FilterIs
+  lt: Date
+  lte: Date
+  neq: Date
+}
+
+scalar Datetime
+
+"""
+Boolean expression comparing fields on type "Datetime"
+"""
+input DatetimeFilter {
+  eq: Datetime
+  gt: Datetime
+  gte: Datetime
+  in: [Datetime!]
+  is: FilterIs
+  lt: Datetime
+  lte: Datetime
+  neq: Datetime
+}
+
+enum FilterIs {
+  NULL
+  NOT_NULL
+}
+
+"""
+Boolean expression comparing fields on type "Float"
+"""
+input FloatFilter {
+  eq: Float
+  gt: Float
+  gte: Float
+  in: [Float!]
+  is: FilterIs
+  lt: Float
+  lte: Float
+  neq: Float
+}
+
+"""
+Boolean expression comparing fields on type "ID"
+"""
+input IDFilter {
+  eq: ID
+}
+
+"""
+Boolean expression comparing fields on type "Int"
+"""
+input IntFilter {
+  eq: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  is: FilterIs
+  lt: Int
+  lte: Int
+  neq: Int
+}
+
+scalar JSON
+
+"""The root type for creating and mutating data"""
+type Mutation {
+  """Deletes zero or more records from the `Posts` collection"""
+  deleteFromPostsCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: PostsFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): PostsDeleteResponse!
+
+  """Deletes zero or more records from the `Profiles` collection"""
+  deleteFromProfilesCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: ProfilesFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): ProfilesDeleteResponse!
+
+  """Adds one or more `Posts` records to the collection"""
+  insertIntoPostsCollection(objects: [PostsInsertInput!]!): PostsInsertResponse
+
+  """Adds one or more `Profiles` records to the collection"""
+  insertIntoProfilesCollection(objects: [ProfilesInsertInput!]!): ProfilesInsertResponse
+
+  """Updates zero or more records in the `Posts` collection"""
+  updatePostsCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: PostsUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: PostsFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): PostsUpdateResponse!
+
+  """Updates zero or more records in the `Profiles` collection"""
+  updateProfilesCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: ProfilesUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: ProfilesFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): ProfilesUpdateResponse!
+}
+
+interface Node {
+  """Retrieves a record by `ID`"""
+  nodeId: ID!
+}
+
+"""Defines a per-field sorting order"""
+enum OrderByDirection {
+  """Ascending order, nulls first"""
+  AscNullsFirst
+
+  """Ascending order, nulls last"""
+  AscNullsLast
+
+  """Descending order, nulls first"""
+  DescNullsFirst
+
+  """Descending order, nulls last"""
+  DescNullsLast
+}
+
+type PageInfo {
+  endCursor: String
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+}
+
+enum PostStatus {
+  draft
+  published
+}
+
+"""
+Boolean expression comparing fields on type "PostStatus"
+"""
+input PostStatusFilter {
+  eq: PostStatus
+  in: [PostStatus!]
+  is: FilterIs
+  neq: PostStatus
+}
+
+type Posts implements Node {
+  """Globally Unique Record Identifier"""
+  nodeId: ID!
+  id: UUID!
+  title: String!
+  body: JSON!
+  status: PostStatus!
+  createdAt: Datetime!
+  updatedAt: Datetime!
+  profileId: UUID!
+  profile: Profiles
+}
+
+type PostsConnection {
+  edges: [PostsEdge!]!
+  pageInfo: PageInfo!
+}
+
+type PostsDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [Posts!]!
+}
+
+type PostsEdge {
+  cursor: String!
+  node: Posts!
+}
+
+input PostsFilter {
+  id: UUIDFilter
+  title: StringFilter
+  status: PostStatusFilter
+  createdAt: DatetimeFilter
+  updatedAt: DatetimeFilter
+  profileId: UUIDFilter
+  nodeId: IDFilter
+}
+
+input PostsInsertInput {
+  id: UUID
+  title: String
+  body: JSON
+  status: PostStatus
+  createdAt: Datetime
+  updatedAt: Datetime
+  profileId: UUID
+}
+
+type PostsInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [Posts!]!
+}
+
+input PostsOrderBy {
+  id: OrderByDirection
+  title: OrderByDirection
+  status: OrderByDirection
+  createdAt: OrderByDirection
+  updatedAt: OrderByDirection
+  profileId: OrderByDirection
+}
+
+input PostsUpdateInput {
+  id: UUID
+  title: String
+  body: JSON
+  status: PostStatus
+  createdAt: Datetime
+  updatedAt: Datetime
+  profileId: UUID
+}
+
+type PostsUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [Posts!]!
+}
+
+type Profiles implements Node {
+  """Globally Unique Record Identifier"""
+  nodeId: ID!
+  id: UUID!
+  name: String!
+  bio: String!
+  username: String
+  createdAt: Datetime!
+  postsCollection(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: PostsFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [PostsOrderBy!]
+  ): PostsConnection
+}
+
+type ProfilesConnection {
+  edges: [ProfilesEdge!]!
+  pageInfo: PageInfo!
+}
+
+type ProfilesDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [Profiles!]!
+}
+
+type ProfilesEdge {
+  cursor: String!
+  node: Profiles!
+}
+
+input ProfilesFilter {
+  id: UUIDFilter
+  name: StringFilter
+  bio: StringFilter
+  username: StringFilter
+  createdAt: DatetimeFilter
+  nodeId: IDFilter
+}
+
+input ProfilesInsertInput {
+  id: UUID
+  name: String
+  bio: String
+  username: String
+  createdAt: Datetime
+}
+
+type ProfilesInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [Profiles!]!
+}
+
+input ProfilesOrderBy {
+  id: OrderByDirection
+  name: OrderByDirection
+  bio: OrderByDirection
+  username: OrderByDirection
+  createdAt: OrderByDirection
+}
+
+input ProfilesUpdateInput {
+  id: UUID
+  name: String
+  bio: String
+  username: String
+  createdAt: Datetime
+}
+
+type ProfilesUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [Profiles!]!
+}
+
+"""The root type for querying data"""
+type Query {
+  """Retrieve a record by its `ID`"""
+  node(
+    """The record's `ID`"""
+    nodeId: ID!
+  ): Node
+
+  """A pagable collection of type `Posts`"""
+  postsCollection(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: PostsFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [PostsOrderBy!]
+  ): PostsConnection
+
+  """A pagable collection of type `Profiles`"""
+  profilesCollection(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: ProfilesFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [ProfilesOrderBy!]
+  ): ProfilesConnection
+}
+
+"""
+Boolean expression comparing fields on type "String"
+"""
+input StringFilter {
+  eq: String
+  gt: String
+  gte: String
+  in: [String!]
+  is: FilterIs
+  lt: String
+  lte: String
+  neq: String
+}
+
+scalar Time
+
+"""
+Boolean expression comparing fields on type "Time"
+"""
+input TimeFilter {
+  eq: Time
+  gt: Time
+  gte: Time
+  in: [Time!]
+  is: FilterIs
+  lt: Time
+  lte: Time
+  neq: Time
+}
+
+scalar UUID
+
+"""
+Boolean expression comparing fields on type "UUID"
+"""
+input UUIDFilter {
+  eq: UUID
+  in: [UUID!]
+  is: FilterIs
+  neq: UUID
+}

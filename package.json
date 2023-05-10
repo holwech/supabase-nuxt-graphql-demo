@@ -1,0 +1,48 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "schema:fetch": "node --no-warnings scripts/fetchGraphQLSchema",
+    "codegen": "npx graphql-codegen",
+    "codegen:watch": "npx graphql-codegen --watch",
+    "database:reset": "supabase db reset && npm run codegen"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^3.3.0",
+    "@graphql-codegen/client-preset": "^3.0.0",
+    "@graphql-codegen/introspection": "^3.0.1",
+    "@graphql-codegen/near-operation-file-preset": "^2.5.0",
+    "@graphql-codegen/typescript-urql-graphcache": "^2.4.4",
+    "@graphql-codegen/urql-introspection": "^2.2.1",
+    "@nuxtjs/supabase": "^0.3.5",
+    "@nuxtjs/tailwindcss": "^6.2.0",
+    "@types/dompurify": "^3.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.58.0",
+    "@typescript-eslint/parser": "^5.58.0",
+    "eslint": "^8.38.0",
+    "eslint-plugin-vue": "^9.10.0",
+    "nuxt": "^3.4.3",
+    "prettier": "^2.8.7",
+    "progress": "^2.0.3",
+    "sass": "^1.62.0",
+    "sass-loader": "^13.2.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "@headlessui/vue": "^1.7.13",
+    "@heroicons/vue": "^2.0.17",
+    "@tiptap/html": "^2.0.3",
+    "@tiptap/pm": "^2.0.3",
+    "@tiptap/starter-kit": "^2.0.3",
+    "@tiptap/vue-3": "^2.0.3",
+    "@urql/exchange-auth": "^2.1.0",
+    "@urql/vue": "^1.1.0",
+    "graphql": "^16.6.0",
+    "isomorphic-dompurify": "^1.3.0"
+  }
+}
