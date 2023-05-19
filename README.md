@@ -6,7 +6,7 @@
 
 This is a simplified version of a blogging tool [I'm building](https://typzet.com). I might open-source the full project (if someone asks for it!).
 
-A more detail guide can be found [here](https://typzet.com/d5fe64fb-0969-4684-95cb-e7adc269d5cc/0e44a435-bdd9-40fd-86aa-2b1e191a404c)
+A more detail guide can be found [here](https://typzet.com/d5fe64fb-0969-4684-95cb-e7adc269d5cc/0e44a435-bdd9-40fd-86aa-2b1e191a404c).
 
 <br />
 
